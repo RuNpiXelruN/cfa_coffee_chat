@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615044644) do
+ActiveRecord::Schema.define(version: 20160615053249) do
 
   create_table "chats", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20160615044644) do
     t.integer  "profile_id"
     t.index ["profile_id"], name: "index_chats_on_profile_id"
     t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "chat_id"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_comments_on_chat_id"
+    t.index ["profile_id"], name: "index_comments_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|

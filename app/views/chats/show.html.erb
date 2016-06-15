@@ -2,3 +2,8 @@
 <p><%= @chat.description %></p>
 <p>Created by <%= link_to @chat.user.username, profile_path(@chat.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
 <hr>
+
+<h4>What are you even thinking about??</h4>
+<%= render partial: 'comments/form', locals: {chat: @chat} %>
+
+<%= render @chat.comments %>
