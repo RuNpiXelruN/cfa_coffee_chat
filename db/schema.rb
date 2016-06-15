@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615053249) do
+ActiveRecord::Schema.define(version: 20160615062506) do
 
   create_table "chats", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,6 +32,23 @@ ActiveRecord::Schema.define(version: 20160615053249) do
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_comments_on_chat_id"
     t.index ["profile_id"], name: "index_comments_on_profile_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "locationable_type"
+    t.integer  "locationable_id"
+    t.string   "suburb"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "address"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postcode"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.index ["locationable_type", "locationable_id"], name: "index_locations_on_locationable_type_and_locationable_id"
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|

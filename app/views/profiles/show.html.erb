@@ -10,6 +10,10 @@
 <% end %>
 
 <hr>
+<%= render partial: 'locations/form', locals: {locationable: @profile} %>
+<%= render partial: 'locations/location', locals: {locationable: @profile} %>
+
+<hr>
 <% if current_user == @profile.user %>
   <h4>Start a new Chat!</h4>
   <%= render partial: 'chats/form', locals: {profile: @profile} %>
