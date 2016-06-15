@@ -1,5 +1,6 @@
 <h3>Profile of <%= @user.username %></h3>
 
+
 <% if @profile.bio %>
   <hr>
   <h4>About Me: </h4>
@@ -10,8 +11,11 @@
 <% end %>
 
 <hr>
-<%= render partial: 'locations/form', locals: {locationable: @profile} %>
-<%= render partial: 'locations/location', locals: {locationable: @profile} %>
+<% if @profile.locations.count > 0 %>
+  <%= render partial: 'locations/location', locals: {locationable: @profile} %>
+<% else %>
+  <%= render partial: 'locations/form', locals: {locationable: @profile} %>
+<% end %>
 
 <hr>
 <% if current_user == @profile.user %>
