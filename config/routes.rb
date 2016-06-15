@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :profiles, only: [:show, :update]
+  resources :chats, only: :show
+  resources :profiles, only: [:show, :update] do
+    resources :chats, only: [:new, :create]
+  end
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :index]
   root 'home#index'

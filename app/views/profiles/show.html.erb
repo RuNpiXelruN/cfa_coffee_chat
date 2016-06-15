@@ -8,3 +8,11 @@
   <p>Fill out your bio!</p>
   <%= render 'profiles/form' %>
 <% end %>
+
+<hr>
+<% if current_user == @profile.user %>
+  <h4>Start a new Chat!</h4>
+  <%= render partial: 'chats/form', locals: {profile: @profile} %>
+<% end %>
+
+<%= render @profile.chats %>
