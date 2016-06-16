@@ -20,10 +20,13 @@
   <%= render partial: 'locations/form', locals: {locationable: @profile} %>
 <% end %>
 
-<hr>
-<h3>Add a new post!</h3>
-<%= render partial: 'posts/form', locals: {profile: @profile} %>
-<%= render @profile.posts %>
+
+<% if current_user == @profile.user %>
+  <h3>Add a new post!</h3>
+  <%= render partial: 'posts/form', locals: {profile: @profile} %>
+<% end %>
+
+<%= render @profile.posts if @profile.posts %>
 
 
 <hr>
