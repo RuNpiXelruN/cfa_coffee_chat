@@ -22,9 +22,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = current_user
+    @user.update(user_params)
+    if @user.save
+      redirect_to profile_path(@user.profile)
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :tutor, :email, :password)
   end
 end

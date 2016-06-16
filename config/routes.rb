@@ -8,9 +8,10 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create]
   end
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :index] do
+  resources :users, only: [:new, :create, :index, :update] do
       post 'follow', to: 'following_relationships#create'
     delete 'follow', to: 'following_relationships#destroy'
+      post 'tutor',  to: 'tutoring_relationships#create'
   end
   root 'home#index'
 

@@ -14,6 +14,15 @@
 <% end %>
 
 <hr>
+<% if @user.tutor == false %>
+  <h3>Are you open to being a tutor and earning some extra $?</h3>
+<% else %>
+  <h3>Remember the more you post, the more attention you'll get!</h3>
+<% end %>
+<%= render 'tutor_button' %>
+
+
+<hr>
 <% if @profile.locations.count > 0 %>
   <%= render partial: 'locations/location', locals: {locationable: @profile} %>
 <% else %>
