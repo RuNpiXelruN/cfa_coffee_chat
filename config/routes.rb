@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     resources :locations, only: [:new, :create], module: :profiles
   end
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :index]
+  resources :users, only: [:new, :create, :index] do
+      post 'follow', to: 'following_relationships#create'
+    delete 'follow', to: 'following_relationships#destroy'
+  end
   root 'home#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,5 +1,8 @@
 <h3>Profile of <%= @user.username %></h3>
 
+<% unless @user == current_user %>
+  <%= follow_button(@user) %>
+<% end %>
 
 <% if @profile.bio %>
   <hr>
