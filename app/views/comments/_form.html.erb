@@ -1,4 +1,4 @@
-<%= form_for [chat, Comment.new] do |f| %>
-  <p><%= f.text_area :body, placeholder: "Type here.." %></p>
+<%= form_for [chat, Comment.new], remote: true do |f| %>
+  <p><%= f.text_area :body, placeholder: "Type here..", id: "comment_content_#{chat.id}"%></p>
   <%= f.submit %>
 <% end %>

@@ -1,9 +1,14 @@
 <h1>A chat about <%= @chat.title %></h1>
 <p><%= @chat.description %></p>
 <p>Created by <%= link_to @chat.user.username, profile_path(@chat.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
+
+<%= render 'chats/likes', chat: @chat %>
+
 <hr>
 
 <h4>What are you even thinking about??</h4>
 <%= render partial: 'comments/form', locals: {chat: @chat} %>
 
-<%= render @chat.comments %>
+<div id="comments_<%= @chat.id %>">
+  <%= render @chat.comments %>
+</div>

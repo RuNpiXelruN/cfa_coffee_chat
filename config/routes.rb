@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :chats, only: :show do
     resources :comments, only: [:new, :create]
+    member do
+      get 'like'
+    end
   end
   resources :profiles, only: [:show, :update] do
     resources :chats, only: [:new, :create]

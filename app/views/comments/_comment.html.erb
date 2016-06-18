@@ -1,3 +1,5 @@
-<p><%= comment.body %></p>
-  <p>Posted by <%= link_to comment.profile.user.username, profile_path(comment.profile) %>, <%= time_ago_in_words(comment.created_at) + ' ago' %></p>
-<p>-------------</p>
+<div id= "comment_<%= comment.id %>">
+  <p><%= comment.body %></p>
+  <p>  Posted by <%= link_to comment.profile.user.username, profile_path(comment.profile) %>, <%= time_ago_in_words(comment.created_at) + ' ago' %></p>
+  <p>-------------</p>
+</div>

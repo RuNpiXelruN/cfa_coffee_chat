@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  include ChatsHelper
 
   def show
     @chat = Chat.find(params[:id])
@@ -10,6 +11,16 @@ class ChatsController < ApplicationController
     @chat.user_id = current_user.id
     if @chat.save
       redirect_to profile_path(profile)
+    end
+  end
+
+  def like
+    @chat = Chat.find(params[:id])
+    if @chat.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
     end
   end
 
