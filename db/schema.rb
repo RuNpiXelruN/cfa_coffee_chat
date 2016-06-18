@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616022308) do
+ActiveRecord::Schema.define(version: 20160618104547) do
 
   create_table "chats", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(version: 20160616022308) do
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer  "profile_id"
     t.integer  "user_id"
@@ -81,10 +88,10 @@ ActiveRecord::Schema.define(version: 20160616022308) do
 
   create_table "tutoring_relationships", force: :cascade do |t|
     t.integer  "tutor_id"
-    t.integer  "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_tutoring_relationships_on_student_id"
+    t.integer  "tutee_id"
+    t.index ["tutee_id"], name: "index_tutoring_relationships_on_tutee_id"
     t.index ["tutor_id"], name: "index_tutoring_relationships_on_tutor_id"
   end
 

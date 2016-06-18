@@ -1,5 +1,9 @@
 <h3>Profile of <%= @user.username %></h3>
 
+
+<%= tutor_button(@user) %>
+
+
 <% unless @user == current_user %>
   <%= follow_button(@user) %>
 <% end %>

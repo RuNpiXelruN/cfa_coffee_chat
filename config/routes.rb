@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'follow', to: 'following_relationships#create'
     delete 'follow', to: 'following_relationships#destroy'
       post 'tutor',  to: 'tutoring_relationships#create'
+    delete 'tutor',  to: 'tutoring_relationships#destroy'
   end
   root 'home#index'
 
