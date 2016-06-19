@@ -6,21 +6,21 @@
 
 <br>
 
-
+<div class="profile-tutor-chats">
 <% @user.chats.each do |chat| %>
   <% if @user.tutee_ids.include?(chat.profile.user_id) %>
     <h4>My Tutees</h4>
-    <p><%= chat.title %></p>
+    <p><%= link_to chat.title, profile_path(chat.profile) %> - <%= link_to "Chat Now", chat_path(chat) %></p>
   <% end %>
 <% end %>
 
 <% @chats.each do |chat| %>
   <% if chat.title == @user.username %>
   <h4>My Tutors</h4>
-  <p>My tutor <%= link_to chat.user.username, chat_path(chat) %></p>
+  <p><%= link_to chat.user.username, profile_path(chat.user.profile) %> - <%= link_to "Chat Now", chat_path(chat) %></p>
   <% end %>
 <% end %>
-
+</div>
 
 
 <% unless @user == current_user %>
