@@ -7,19 +7,25 @@
 <br>
 
 <div class="profile-tutor-chats">
-<% @user.chats.each do |chat| %>
-  <% if @user.tutee_ids.include?(chat.profile.user_id) %>
-    <h4>My Tutees</h4>
-    <p><%= link_to chat.title, profile_path(chat.profile) %> - <%= link_to "Chat Now", chat_path(chat) %></p>
-  <% end %>
-<% end %>
+  <div id="tutor-chat-list">
+    <% if @user.tutees.count > 0 %>
+      <h4>My Tutees</h4>
+      <% @user.chats.each do |chat| %>
+        <% if @user.tutee_ids.include?(chat.profile.user_id) %>
+          <p><%= link_to chat.title, profile_path(chat.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+        <% end %>
+      <% end %>
+    <% end %>
 
-<% @chats.each do |chat| %>
-  <% if chat.title == @user.username %>
-  <h4>My Tutors</h4>
-  <p><%= link_to chat.user.username, profile_path(chat.user.profile) %> - <%= link_to "Chat Now", chat_path(chat) %></p>
-  <% end %>
-<% end %>
+    <% if @user.tutors.count > 0 %>
+      <% @chats.each do |chat| %>
+        <% if chat.title == @user.username %>
+        <h4>My Tutors</h4>
+        <p><%= link_to chat.user.username, profile_path(chat.user.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 
