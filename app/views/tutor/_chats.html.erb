@@ -1,0 +1,5 @@
+<% user_chats.each do |chat| %>
+  <% if chat.tutorchat == true && chat.user_id == user.id %>
+    <p>I'm the tutor <%= link_to chat.title, chat_path(chat) %></p>
+  <% end %>
+<% end %>

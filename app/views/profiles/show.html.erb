@@ -4,11 +4,30 @@
   <%= tutor_button(@user) %>
 <% end %>
 
+<br>
+
+
+<% @user.chats.each do |chat| %>
+  <% if @user.tutee_ids.include?(chat.profile.user_id) %>
+    <h4>My Tutees</h4>
+    <p><%= chat.title %></p>
+  <% end %>
+<% end %>
+
+<% @chats.each do |chat| %>
+  <% if chat.title == @user.username %>
+  <h4>My Tutors</h4>
+  <p>My tutor <%= link_to chat.user.username, chat_path(chat) %></p>
+  <% end %>
+<% end %>
+
+
 
 <% unless @user == current_user %>
   <%= follow_button(@user) %>
 <% end %>
 
+<br>
 <% if @profile.bio %>
   <hr>
   <h4>About Me: </h4>

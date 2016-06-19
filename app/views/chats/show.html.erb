@@ -1,13 +1,40 @@
-<h1>A chat about <%= @chat.title %></h1>
-<p><%= @chat.description %></p>
-<p>Created by <%= link_to @chat.user.username, profile_path(@chat.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
+<% if @chat.tutorchat == false %>
+  <h1>A chat about <%= @chat.title %></h1>
+  <p><%= @chat.description %></p>
+  <p>Created by <%= link_to @chat.user.username, profile_path(@chat.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
 
 
-<hr>
+  <hr>
 
-<h4>What are you even thinking about??</h4>
-<%= render partial: 'comments/form', locals: {chat: @chat} %>
+  <h4>What are you even thinking about??</h4>
+  <%= render partial: 'comments/form', locals: {chat: @chat} %>
 
-<div id="comments_<%= @chat.id %>">
-  <%= render @chat.comments %>
-</div>
+  <div id="comments_<%= @chat.id %>">
+    <%= render @chat.comments %>
+  </div>
+<% else %>
+  <h1>Welcome to tutor Chat!</h1>
+  <p><strong>Tutor: </strong><%= @chat.user.username %></p>
+  <p><strong>Tutee: </strong><%= @chat.title %></p>
+
+  <% if @chat.description %>
+    <p>Chatting about all things <strong><%= @chat.description %></p></strong>
+  <% else %>
+    <h3>What topic are you guys chatting about??</h3>
+    <%= form_for @chat do |f| %>
+      <p><%= f.text_area :description, placeholder: "Enter a description.." %></p>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+
+  <p>Created by <%= link_to @chat.user.username, profile_path(@chat.user.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
+
+  <hr>
+
+  <h4>What are you even thinking about??</h4>
+  <%= render partial: 'comments/form', locals: {chat: @chat} %>
+
+  <div id="comments_<%= @chat.id %>">
+    <%= render @chat.comments %>
+  </div>
+<% end %>

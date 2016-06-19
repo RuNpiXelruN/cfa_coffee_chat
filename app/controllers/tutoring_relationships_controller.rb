@@ -5,7 +5,7 @@ class TutoringRelationshipsController < ApplicationController
     current_user.tutees << user
     @chat = Chat.new
     @chat.user = current_user
-    @chat.profile = current_user.profile
+    @chat.profile = user.profile
     @chat.title = user.username
     @chat.tutorchat = true
     @chat.save

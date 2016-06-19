@@ -14,6 +14,13 @@ class ChatsController < ApplicationController
     end
   end
 
+  def update
+    @chat = Chat.find(params[:id])
+    if @chat.update(chat_params)
+      redirect_to chat_path(@chat)
+    end
+  end
+
 
 
   private
