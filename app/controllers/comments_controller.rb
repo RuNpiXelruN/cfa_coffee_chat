@@ -6,9 +6,7 @@ class CommentsController < ApplicationController
     @comment = chat.comments.build(comment_params)
     @comment.profile_id = profile.id
     if @comment.save
-      respond_to do |format|
-        format.html { redirect_to chat_path(chat) }
-        format.js
+      redirect_to chat_path(@comment.chat)
       end
     end
   end

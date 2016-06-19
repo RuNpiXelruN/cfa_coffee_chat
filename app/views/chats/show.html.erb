@@ -2,7 +2,6 @@
 <p><%= @chat.description %></p>
 <p>Created by <%= link_to @chat.user.username, profile_path(@chat.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
 
-<%= render 'chats/likes', chat: @chat %>
 
 <hr>
 

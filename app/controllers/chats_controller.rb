@@ -1,5 +1,4 @@
 class ChatsController < ApplicationController
-  include ChatsHelper
 
   def show
     @chat = Chat.find(params[:id])
@@ -14,15 +13,6 @@ class ChatsController < ApplicationController
     end
   end
 
-  def like
-    @chat = Chat.find(params[:id])
-    if @chat.liked_by current_user
-      respond_to do |format|
-        format.html { redirect_to :back }
-        format.js
-      end
-    end
-  end
 
 
   private

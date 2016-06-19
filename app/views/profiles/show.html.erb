@@ -1,7 +1,8 @@
 <h3>Profile of <%= @user.username %></h3>
 
-
-<%= tutor_button(@user) %>
+<% unless current_user.tutor == false || @user.profile == current_user.profile %>
+  <%= tutor_button(@user) %>
+<% end %>
 
 
 <% unless @user == current_user %>
