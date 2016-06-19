@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :chats, only: [:show, :update] do
     resources :comments, only: [:new, :create]
   end
-  resources :posts, only: [:edit, :update]
+  resources :posts, only: [:edit, :update, :destroy]
   resources :locations, only: [:edit, :update]
   resources :profiles, only: [:show, :edit, :update] do
     resources :chats, only: [:new, :create]

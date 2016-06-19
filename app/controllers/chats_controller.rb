@@ -14,6 +14,8 @@ class ChatsController < ApplicationController
     end
   end
 
+
+
   def update
     @chat = Chat.find(params[:id])
     if @chat.update(chat_params)
