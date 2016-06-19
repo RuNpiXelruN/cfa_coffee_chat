@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <% if notice %>
+      <p><%= notice %></p>
+    <% end %>
 
     <%= link_to "Home", root_path %>
     <% if signed_in? %>
@@ -18,7 +21,8 @@
       <%= link_to "Sign In", new_session_path %>
       <%= link_to "Sign Up", new_user_path %>
     <% end %>
-    <%= link_to "All Profiles", users_path %>
+    <%= link_to "All Students", users_path %>
+    <%= link_to "All Chats", chats_path %>
 
     <%= yield %>
   </body>

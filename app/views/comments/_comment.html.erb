@@ -1,5 +1,8 @@
 <div id= "comment_<%= comment.id %>">
   <p><%= comment.body %></p>
   <p>  Posted by <%= link_to comment.profile.user.username, profile_path(comment.profile) %>, <%= time_ago_in_words(comment.created_at) + ' ago' %></p>
-  <p>-------------</p>
+  <% if comment.profile == current_user.profile %>
+    <%= link_to "Edit", edit_comment_path(comment) %>
+    <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: "For real?"} %>
+  <% end %>
 </div>

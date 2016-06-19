@@ -18,7 +18,7 @@
   <p><strong>Tutee: </strong><%= @chat.title %></p>
 
   <% if @chat.description %>
-    <p>Chatting about all things <strong><%= @chat.description %></p></strong>
+    <p>Chatting about <strong><%= @chat.description %></p></strong>
   <% else %>
     <h3>What topic are you guys chatting about??</h3>
     <%= form_for @chat do |f| %>
