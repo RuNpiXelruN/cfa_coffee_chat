@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :chats, only: [:show, :update] do
     resources :comments, only: [:new, :create]
   end
-  resources :profiles, only: [:show, :update] do
+  resources :posts, only: [:edit, :update]
+  resources :locations, only: [:edit, :update]
+  resources :profiles, only: [:show, :edit, :update] do
     resources :chats, only: [:new, :create]
     resources :locations, only: [:new, :create], module: :profiles
     resources :posts, only: [:new, :create]

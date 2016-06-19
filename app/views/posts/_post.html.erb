@@ -1,3 +1,9 @@
-<p><strong><%= post.title %></strong> - created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
+<p><strong><%= post.title %></strong></p>
+  <% if post.updated_at.to_i > post.created_at.to_i %>
+    <p> created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
+    <p>edited <%= time_ago_in_words(post.updated_at) + ' ago' %></p>
+  <% else %>
+    <p>Post created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
+  <% end %>
 <p><%= post.body %></p>
-<p>----------</p>
+<%= link_to "Edit", edit_post_path(post) %>

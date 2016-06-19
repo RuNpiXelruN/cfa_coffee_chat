@@ -8,6 +8,17 @@ class LocationsController < ApplicationController
     end
   end
 
+  def edit
+    @location = Location.find(params[:id])
+  end
+
+  def update
+    @location = Location.find(params[:id])
+    if @location.update(location_params)
+      redirect_to profile_path(current_user.profile)
+    end
+  end
+
   private
   def location_params
     params.require(:location).permit(:address, :suburb, :state, :country, :postcode, :latitude, :longitude, :user_id)
