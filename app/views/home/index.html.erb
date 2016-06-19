@@ -4,4 +4,27 @@
 <%= link_to "Get Learned", new_user_path %>
 
 <hr>
+
+<div class="home-follow_section">
+  <div class="my_followed_users">
+    <p>Following (<%= current_user.followed_users.count %>)</p>
+    <div class="followed-list">
+      <% current_user.followed_users.each do |user| %>
+        <p><%= link_to user.username, profile_path(user.profile) %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="my_followers">
+    <p>Followers (<%= current_user.followers.count %>)</p>
+    <div class="followers-list">
+      <% current_user.followers.each do |user| %>
+        <p><%= link_to user.username, profile_path(user.profile) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<h3>Recently Joined Users</h3>
+
 <%= render @users %>
