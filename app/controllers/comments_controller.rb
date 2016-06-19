@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
     @comment.profile_id = profile.id
     if @comment.save
       redirect_to chat_path(@comment.chat)
-      end
     end
   end
 

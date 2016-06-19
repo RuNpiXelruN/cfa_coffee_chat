@@ -1,0 +1,16 @@
+<h1>Tutor Chat between <%= chat.title %> and <%= chat.user.username %></h1>
+<p><%= chat.description if chat.description %></p>
+<p>Created by <%= link_to chat.user.username, profile_path(chat.profile) %>, <%= time_ago_in_words(chat.created_at) + ' ago' %></p>
+
+<hr>
+
+<h4>What are you even thinking about??</h4>
+<%= render partial: 'comments/form', locals: {chat: chat} %>
+
+<div id="comments_<%= chat.id %>">
+  <% chat.comments.each do |comment| %>
+    <p><%= comment.body %></p>
+  <% end %>
+
+  <%# render chat.comments %>
+</div>

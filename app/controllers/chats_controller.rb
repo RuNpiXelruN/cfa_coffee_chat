@@ -2,6 +2,7 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
+    @comments = @chat.comments
   end
 
   def create
