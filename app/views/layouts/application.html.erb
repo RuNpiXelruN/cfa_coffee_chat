@@ -4,8 +4,8 @@
     <title>CfaCoffeeChat</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -13,16 +13,7 @@
       <p><%= notice %></p>
     <% end %>
 
-    <%= link_to "Home", root_path %>
-    <% if signed_in? %>
-      <%= link_to "Sign Out", session_path, method: :delete %>
-      <%= link_to "My Profile", profile_path(current_user.profile) %>
-    <% else %>
-      <%= link_to "Sign In", new_session_path %>
-      <%= link_to "Sign Up", new_user_path %>
-    <% end %>
-    <%= link_to "All Students", users_path %>
-    <%= link_to "All Chats", chats_path %>
+    <%= render 'layouts/nav' %>
 
     <%= yield %>
   </body>

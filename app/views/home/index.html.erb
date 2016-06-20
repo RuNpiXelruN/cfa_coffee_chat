@@ -1,32 +1,36 @@
-<h1>Welcome To Coffee Chat</h1>
-<p>Get your learn on!</p>
+<div class="home-wrapper">
+  <div class="home-hero">
+    <div class="homer-hero-block">
+      <h1 class="home-header">Welcome To Coffee Chat</h1>
+      <p class="home-blurb">Get your learn on!</p>
 
-<%= link_to "Get Learned", new_user_path %>
-
-<hr>
-
-<% if signed_in? %>
-  <div class="home-follow_section">
-    <div class="my_followed_users">
-      <p>Following (<%= current_user.followed_users.count %>)</p>
-      <div class="followed-list">
-        <% current_user.followed_users.each do |user| %>
-          <p><%= link_to user.username, profile_path(user.profile) %></p>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="my_followers">
-      <p>Followers (<%= current_user.followers.count %>)</p>
-      <div class="followers-list">
-        <% current_user.followers.each do |user| %>
-          <p><%= link_to user.username, profile_path(user.profile) %></p>
-        <% end %>
-      </div>
+      <%= link_to "Get Learned", new_user_path, class: "home-hero-btn" %>
     </div>
   </div>
-<% end %>
 
-<h3>Recently Joined Users</h3>
+  <% if signed_in? %>
+    <div class="home-follow_section">
+      <div class="my_followed_users">
+        <p>Following (<%= current_user.followed_users.count %>)</p>
+        <div class="followed-list">
+          <% current_user.followed_users.each do |user| %>
+            <p><%= link_to user.username, profile_path(user.profile) %></p>
+          <% end %>
+        </div>
+      </div>
 
-<%= render @users %>
+      <div class="my_followers">
+        <p>Followers (<%= current_user.followers.count %>)</p>
+        <div class="followers-list">
+          <% current_user.followers.each do |user| %>
+            <p><%= link_to user.username, profile_path(user.profile) %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <h3>Recently Joined Users</h3>
+
+  <%= render @users %>
+</div>

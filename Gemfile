@@ -11,8 +11,9 @@ gem 'puma', '~> 3.0'
 
 gem 'monban-generators'
 gem 'geocoder'
-gem 'bootstrap-sass'
 gem 'acts_as_votable'
+gem 'bootstrap-sass', '~> 3.3.6'
+
 
 
 # Use SCSS for stylesheets
