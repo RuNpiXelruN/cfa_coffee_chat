@@ -25,30 +25,6 @@
   </div>
 
 
-  <% if @user.profile == current_user.profile %>
-    <div class="profile-tutor-contacts">
-      <div id="profile-tutor-list">
-        <% if @user.tutees.count > 0 %>
-          <h4 class="profile-tutees">My Tutees</h4>
-          <% @user.chats.each do |chat| %>
-            <% if @user.tutee_ids.include?(chat.profile.user_id) %>
-              <p id="tuteechat_<%= chat.id %>"><%= link_to chat.title, profile_path(chat.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
-            <% end %>
-          <% end %>
-        <% end %>
-
-        <% if @user.tutors.count > 0 %>
-          <% @chats.each do |chat| %>
-            <% if chat.title == @user.username %>
-            <h4 class="profile-tutors">My Tutors</h4>
-            <p id="tutorchat_<%= chat.id %>"><%= link_to chat.user.username, profile_path(chat.user.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
 
   <% unless @user == current_user %>
     <%= follow_button(@user) %>
@@ -62,20 +38,39 @@
 
 
   <div class="row">
-    <div class="">
+    <!-- My Chat dropdown -->
+    <div class="col-md-4">
       <div class="dropdown">
-        <button class="col-md-4 btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Chats
+        <button class="col-md-12 btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Chats
           <span class="caret"></span>
         </button>
         <% if @profile.chats.count > 0 %>
-            <ul class="chat-dropdown dropdown-menu col-md-4" aria-labelledby="dropdownMenu1">
+            <ul class="chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu1">
               <%= render @profile.chats %>
             </ul>
         <% end %>
       </div>
+
+      <!-- my student chats -->
+      <div class="dropdown">
+        <button class="col-md-12 btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Student Chats
+          <span class="caret"></span>
+        </button>
+          <ul class="student-chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu2">
+            <%= render 'tutor/tutees' %>
+          </ul>
+      </div>
+
+      <!-- my tutor chats -->
+      <div class="dropdown">
+        <button class="col-md-12 btn btn-info dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Tutor Chats
+          <span class="caret"></span>
+        </button>
+          <ul class="tutor-chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu3">
+            <%= render 'tutor/tutors' %>
+          </ul>
+      </div>
     </div>
-
-
 
     <div class="col-md-6 col-md-offset-2">
       <% if @profile.locations.count > 0 %>
@@ -89,31 +84,34 @@
     </div>
   </div>
 
+    <!-- new chat -->
+    <div class="row">
+      <div class="col-md-5">
+        <% if current_user == @profile.user %>
+          <h4>Start a new Open Chat!</h4>
+          <%= render partial: 'chats/form', locals: {profile: @profile} %>
+        <% end %>
+      </div>
 
-  <div class="row">
-    <div class="col-md-5">
-      <% if current_user == @profile.user %>
-        <h4>Start a new Open Chat!</h4>
-        <%= render partial: 'chats/form', locals: {profile: @profile} %>
-      <% end %>
-    </div>
-    <div class="col-md-5 col-md-offset-1">
-      <% if current_user == @profile.user %>
-        <h4>Add a new post!</h4>
-        <%= render partial: 'posts/form', locals: {profile: @profile} %>
-      <% end %>
+      <!-- new blog post   -->
+      <div class="col-md-5 col-md-offset-1">
+        <% if current_user == @profile.user %>
+          <h4>Add a new post!</h4>
+          <%= render partial: 'posts/form', locals: {profile: @profile} %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+
 
 
 <div class="container">
   <div class="row">
-    <div class="blog-well well col-md-12">
-      <% if @profile.posts.count > 0 %>
+    <% if @profile.posts.count > 0 %>
+      <div class="blog-well well col-md-12">
         <h3 class="col-md-offset-1">   Recent Blog Post's by <%= @profile.user.username %></h3>
         <%= render @profile.posts %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <%= form_for [profile, Chat.new] do |f| %>
   <div>
     <p><%= f.text_field :title, placeholder: "Title..", class: "form-control" %></p>
-    <p><%= f.text_area :description, placeholder: "Description..", class: "form-control" %></p>
+    <p><%= f.text_area :description, placeholder: "Description..", rows: 8, class: "form-control" %></p>
     <%= f.submit "Create Chat!", class: "btn btn-primary" %>
   </div>
 <% end %>

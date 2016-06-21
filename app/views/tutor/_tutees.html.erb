@@ -1,0 +1,9 @@
+<% if @user.tutees.count > 0 %>
+    <% @user.chats.each do |chat| %>
+      <% if @user.tutee_ids.include?(chat.profile.user_id) %>
+        <p id="tuteechat_<%= chat.id %>"><%= link_to chat.title, profile_path(chat.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>No Student chats</p>
+<% end %>

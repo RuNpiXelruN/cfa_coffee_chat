@@ -1,0 +1,9 @@
+<% if @user.tutors.count > 0 %>
+    <% @chats.each do |chat| %>
+      <% if chat.title == @user.username %>
+      <p id="tutorchat_<%= chat.id %>"><%= link_to chat.user.username, profile_path(chat.user.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>No tutor chats</p>
+<% end %>
