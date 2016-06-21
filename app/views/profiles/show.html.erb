@@ -1,7 +1,19 @@
 <div class="profile-wrapper jumbotron">
   <div class="profile-details row">
     <div class="col-md-6 col-md-offset-6">
-      <h3 class="profile-name">Profile of <%= @user.username %></h3>
+      <p class="profile-name">
+        Profile of <%= @user.username %>
+        <% unless @user == current_user %>
+          <span class="profile-follow_button">
+            <%= follow_button(@user) %>
+          </span>
+        <% end %>
+        <% unless current_user.tutor == false || @user.profile == current_user.profile %>
+          <span class="profile-tutoring-button">
+            <%= tutor_button(@user) %>
+          </span>
+        <% end %>
+      </p>
       <div class="profile-about-wrapper">
         <% if @profile.bio %>
           <h4 class="profile-about">About Me: </h4>
@@ -16,25 +28,7 @@
   </div>
 
 
-  <div class="row">
-    <div class="col-md-6 col-md-offset-6">
-      <% unless current_user.tutor == false || @user.profile == current_user.profile %>
-        <p class="profile-tutor-btn"><%= tutor_button(@user) %></p>
-      <% end %>
-    </div>
-  </div>
-
-
-
-  <% unless @user == current_user %>
-    <%= follow_button(@user) %>
-  <% end %>
-
-
-
-
   <%= render 'profile_tutor_section' %>
-
 
 
   <div class="row">
