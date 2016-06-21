@@ -1,22 +1,21 @@
 <% if @user.profile == current_user.profile %>
-  <hr>
 
-  <% if @user.tutor == false %>
-    <h3>Are you open to being a tutor and earning some extra $?</h3>
-  <% else %>
-    <h3>Remember the more you post, the more attention you'll get!</h3>
-  <% end %>
+
 
   <% if @user.tutor == false %>
     <%= form_for current_user do |f| %>
-     <div><%= f.hidden_field :tutor, value: true %></div>
-     <%= f.submit "Become Tutor" %>
+     <div class="col-md-6 col-md-offset-6">
+       <div><%= f.hidden_field :tutor, value: true %></div>
+       <p><%= f.submit "Become Tutor", class: "btn btn-primary" %> Level up now</p>
+     </div>
     <% end %>
   <% else %>
     <%= form_for current_user do |f| %>
-     <div><%= f.hidden_field :tutor, value: false %></div>
-     <%= f.submit "Not a tutor" %>
-    <% end %>
+    <div class="col-md-6 col-md-offset-6">
+       <div><%= f.hidden_field :tutor, value: false %></div>
+       <p><%= f.submit "Not a tutor", class: "btn btn-danger" %> Teaching isn't for everyone..</p>
+       <% end %>
+    </div>
 
   <% end %>
 

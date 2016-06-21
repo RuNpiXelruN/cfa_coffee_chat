@@ -1,12 +1,14 @@
-<p><strong><%= post.title %></strong></p>
-  <% if post.updated_at.to_i > post.created_at.to_i %>
-    <p> created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
-    <p>edited <%= time_ago_in_words(post.updated_at) + ' ago' %></p>
-  <% else %>
-    <p>Post created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
+<div class="col-md-10 col-md-offset-1">
+  <h3><strong><%= post.title %></strong></h3>
+    <% if post.updated_at.to_i > post.created_at.to_i %>
+      <p> created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
+      <p>edited <%= time_ago_in_words(post.updated_at) + ' ago' %></p>
+    <% else %>
+      <p>Post created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
+    <% end %>
+  <p><%= post.body %></p>
+  <% if post.profile == current_user.profile %>
+    <%= link_to "Edit", edit_post_path(post), class: "btn btn-primary" %>
+    <%= link_to "Delete", post_path(post), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
   <% end %>
-<p><%= post.body %></p>
-<% if post.profile == current_user.profile %>
-  <%= link_to "Edit", edit_post_path(post) %>
-  <%= link_to "Delete", post_path(post), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
+</div>

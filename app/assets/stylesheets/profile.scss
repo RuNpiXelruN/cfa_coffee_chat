@@ -1,47 +1,10 @@
-// .profile-wrapper {
-//     position: relative;
-//     background: hotpink;
-//     width: 80vw;
-//     margin-left: 10vw;
-//     border-radius: 1vw;
-//
-//     .profile-details {
-//         display: inline-block;
-//         margin-left: 44vw;
-//
-//         .profile-name {
-//             font-family: 'opensans_bold';
-//             text-transform: uppercase;
-//             font-size: 2.5vw;
-//             color: #333;
-//             margin-bottom: 0vw;
-//         }
-//         .profile-about-wrapper {
-//             .profile-about {
-//                 font-family: 'opensans_bold';
-//                 font-size: 1.5vw;
-//                 color: #333;
-//                 margin-top: 2vw;
-//                 margin-bottom: 0vw;
-//
-//                 a {
-//                     text-decoration: none;
-//                     text-transform: uppercase;
-//                     font-family: 'opensans_bold';
-//                     color: #333;
-//                     font-size: 1vw;
-//                     padding: 0.3vw 1vw;
-//                     border-radius: 0.2vw;
-//                     background: yellow;
-//                     margin-left: 2vw;
-//                     cursor: pointer;
-//                     margin-bottom: 2vw;
-//                 }
-//             }
-//             .profile-bio {
-//                 font-family: 'opensans_light';
-//                 font-size: 1.3vw;
-//             }
-//         }
-//     }
-// }
+ul.chat-dropdown {
+  margin-top: 14vh !important;
+}
+.chat-li {
+  text-align: center !important;
+}
+
+.blog-well {
+  width: 97% !important;
+}

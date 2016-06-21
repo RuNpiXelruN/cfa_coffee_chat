@@ -1,10 +1,4 @@
 <div class="profile-wrapper jumbotron">
-
-  <% unless current_user.tutor == false || @user.profile == current_user.profile %>
-    <p class="profile-tutor-btn"><%= tutor_button(@user) %></p>
-  <% end %>
-
-
   <div class="profile-details row">
     <div class="col-md-6 col-md-offset-6">
       <h3 class="profile-name">Profile of <%= @user.username %></h3>
@@ -20,6 +14,16 @@
       </div>
     </div>
   </div>
+
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-6">
+      <% unless current_user.tutor == false || @user.profile == current_user.profile %>
+        <p class="profile-tutor-btn"><%= tutor_button(@user) %></p>
+      <% end %>
+    </div>
+  </div>
+
 
   <% if @user.profile == current_user.profile %>
     <div class="profile-tutor-contacts">
@@ -56,9 +60,24 @@
   <%= render 'profile_tutor_section' %>
 
 
-  <hr>
+
   <div class="row">
-    <div class="col-xs-12 col-md-6 col-md-offset-6">
+    <div class="">
+      <div class="dropdown">
+        <button class="col-md-4 btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Chats
+          <span class="caret"></span>
+        </button>
+        <% if @profile.chats.count > 0 %>
+            <ul class="chat-dropdown dropdown-menu col-md-4" aria-labelledby="dropdownMenu1">
+              <%= render @profile.chats %>
+            </ul>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-6 col-md-offset-2">
       <% if @profile.locations.count > 0 %>
         <%= render partial: 'locations/location', locals: {locationable: @profile} %>
         <% if @profile == current_user.profile %>
@@ -71,25 +90,30 @@
   </div>
 
 
-  <% if current_user == @profile.user %>
-    <h3>Add a new post!</h3>
-    <%= render partial: 'posts/form', locals: {profile: @profile} %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-5">
+      <% if current_user == @profile.user %>
+        <h4>Start a new Open Chat!</h4>
+        <%= render partial: 'chats/form', locals: {profile: @profile} %>
+      <% end %>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+      <% if current_user == @profile.user %>
+        <h4>Add a new post!</h4>
+        <%= render partial: 'posts/form', locals: {profile: @profile} %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  <% if @profile.posts.count > 0 %>
-    <h3>Recent Blog Post's by <%= @profile.user.username %></h3>
-    <%= render @profile.posts %>
-  <% end %>
 
-
-  <hr>
-  <% if current_user == @profile.user %>
-    <h4>Start a new Open Chat!</h4>
-    <%= render partial: 'chats/form', locals: {profile: @profile} %>
-  <% end %>
-
-  <% if @profile.chats.count > 0 %>
-    <h3>Chats created by <%= @profile.user.username %></h3>
-    <%= render @profile.chats %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="blog-well well col-md-12">
+      <% if @profile.posts.count > 0 %>
+        <h3 class="col-md-offset-1">   Recent Blog Post's by <%= @profile.user.username %></h3>
+        <%= render @profile.posts %>
+      <% end %>
+    </div>
+  </div>
 </div>
