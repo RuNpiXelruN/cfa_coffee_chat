@@ -1,10 +1,9 @@
 <div class="home-wrapper">
-  <div class="home-hero">
-    <div class="homer-hero-block">
-      <h1 class="home-header">Welcome To Coffee Chat</h1>
-      <p class="home-blurb">Get your learn on!</p>
-
-      <%= link_to "Get Learned", new_user_path, class: "home-hero-btn" %>
+  <div class="home-hero row jumbotron">
+    <div class="homer-hero-block" style="text-align: center">
+      <h1 class="home-header col-md-10 col-md-offset-1">Welcome To Coffee Chat</h1>
+      <p class="home-blurb col-md-6 col-md-offset-3">Get your learn on!</p>
+      <%= link_to "Get Learned", new_user_path, class: "home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5" %>
     </div>
   </div>
 
