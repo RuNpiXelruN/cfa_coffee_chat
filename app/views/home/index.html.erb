@@ -3,10 +3,11 @@
     <div class="homer-hero-block" style="text-align: center">
       <h1 class="home-header col-md-10 col-md-offset-1">Welcome To Coffee Chat</h1>
       <p class="home-blurb col-md-6 col-md-offset-3">Get your learn on!</p>
-      <%= link_to "Get Learned", new_user_path, class: "home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5" %>
+      <button type="button" data-toggle="modal" data-target="#signup-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Get Learned</button>
     </div>
   </div>
 
+  <%= render partial: 'modals/signup' %>
 
 
   <div class="row">
@@ -29,7 +30,7 @@
                 <li><%= link_to user.username, profile_path(user.profile) %></li>
               <% end %>
             <% else %>
-              <li>Youch..no followers</li>
+              <li>youch..no followers</li>
             <% end %>
           </ul>
         </div>

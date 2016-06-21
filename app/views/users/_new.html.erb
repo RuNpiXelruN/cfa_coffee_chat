@@ -1,0 +1,14 @@
+<%= form_for User.new do |f| %>
+  <div>
+    <%= f.text_field :username, placeholder: "Username..", required: true %>
+  </div>
+  <div>
+    <%= f.email_field :email, placeholder: "Email..", required: true %>
+  </div>
+  <div>
+    <%= f.password_field :password, require: true, placeholder: "Password.." %>
+  </div>
+  <div>
+    <%= f.submit "SignUp already" %>
+  </div>
+<% end %>

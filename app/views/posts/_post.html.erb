@@ -7,7 +7,7 @@
       <p>Post created <%= time_ago_in_words(post.created_at) + ' ago' %></p>
     <% end %>
   <p><%= post.body %></p>
-  <% if post.profile == current_user.profile %>
+  <% if signed_in? && post.profile == current_user.profile %>
     <%= link_to "Edit", edit_post_path(post), class: "btn btn-primary" %>
     <%= link_to "Delete", post_path(post), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %>
   <% end %>
