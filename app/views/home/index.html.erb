@@ -11,8 +11,13 @@
 
   <div class="row">
 
+    <div class="home-blog-posts col-md-7 well">
+      <h2 class="page-header" style="text-align: center; margin-top: 8vh">Most Recent Blog Posts</h2>
+      <%= render @activity_posts %>
+    </div>
+
     <% if signed_in? %>
-      <div class="home-follow-btns col-md-3 col-md-offset-8">
+      <div class="home-follow-btns col-md-3 col-md-offset-1">
         <!-- following links -->
         <div class="btn-group">
           <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,14 +48,12 @@
               <li>Follow already..</li>
             <% end %>
           </ul>
+        </div> <% end %> <!-- end of follow button section -->
+
+        <div class="home-activity-section">
+          <h2 class="page-header" style="text-align: center">Recent Activity</h3>
+          <%= render @users %>
         </div>
       </div>
-    <% end %> <!-- end of follow button section -->
-
-    <div class="home-activity-section col-md-4 col-md-offset-8">
-      <h2>Recently Joined Users</h3>
-      <%= render @users %>
-    </div>
-
   </div>  <!-- end of row for activity feed and follow buttons -->
 </div>

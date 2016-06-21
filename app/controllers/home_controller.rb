@@ -3,5 +3,6 @@ class HomeController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc)
+    @activity_posts = Post.all.order(created_at: :desc).limit(5)
   end
 end
