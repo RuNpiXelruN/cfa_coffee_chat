@@ -1,20 +1,21 @@
-<a href="#" id="nav-click"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-<div class="nav-logins">
-  <% if signed_in? %>
-    <%= link_to "Sign Out", session_path, method: :delete, id: "nav-signout-btn" %>
-  <% else %>
-    <%= link_to "Sign In", new_session_path, id: "nav-signin-btn" %>
-    <%= link_to "Sign Up", new_user_path, id: "nav-signup-btn" %>
-  <% end %>
-</div>
-<div class="nav-wrapper">
-  <div class="nav-contents">
-    <%= link_to '<span class="home-span">Home</span>'.html_safe, root_path, id: "nav-home-btn" %>
-    <% if signed_in? %>
-      <%= link_to '<span class="profile-span">My Profile</span>'.html_safe, profile_path(current_user.profile), id: "nav-profile-btn" %>
-    <% end %>
-    <%# link_to "My Profile", profile_path(current_user.profile), id: "nav-profile-btn" %>
-    <%= link_to '<span class="student-span">All Students</span>'.html_safe, users_path, id: "nav-students-btn" %>
-    <%= link_to '<span class="chat-span">All Chats</span>'.html_safe, chats_path, id: "nav-chats-btn" %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid container">
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Coffee Chat", root_path %></li>
+      <li><%= link_to '<span class="home-span">Home</span>'.html_safe, root_path, id: "nav-home-btn" %></li>
+      <% if signed_in? %>
+        <li><%= link_to '<span class="profile-span">My Profile</span>'.html_safe, profile_path(current_user.profile), id: "nav-profile-btn" %></li>
+      <% end %>
+      <li><%= link_to '<span class="student-span">All Students</span>'.html_safe, users_path, id: "nav-students-btn" %></li>
+      <li><%= link_to '<span class="chat-span">All Chats</span>'.html_safe, chats_path, id: "nav-chats-btn" %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if signed_in? %>
+        <li><%= link_to "Sign Out", session_path, method: :delete, id: "nav-signout-btn" %></li>
+      <% else %>
+        <li><%= link_to "Sign In", new_session_path, id: "nav-signin-btn" %></li>
+        <li><%= link_to "Sign Up", new_user_path, id: "nav-signup-btn" %></li>
+      <% end %>
+    </ul>
   </div>
-</div>
+</nav>

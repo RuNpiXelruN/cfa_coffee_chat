@@ -9,12 +9,11 @@
   </head>
 
   <body>
+    <%= render 'layouts/nav' %>
     <div class="container">
       <% if notice %>
         <p><%= notice %></p>
       <% end %>
-
-      <%= render 'layouts/nav' %>
 
       <%= yield %>
     </div>
