@@ -9,12 +9,14 @@
   </head>
 
   <body>
-    <% if notice %>
-      <p><%= notice %></p>
-    <% end %>
+    <div class="container">
+      <% if notice %>
+        <p><%= notice %></p>
+      <% end %>
 
-    <%= render 'layouts/nav' %>
+      <%= render 'layouts/nav' %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>

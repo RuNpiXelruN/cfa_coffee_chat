@@ -1,83 +1,95 @@
-<h3>Profile of <%= @user.username %></h3>
+<div class="profile-wrapper jumbotron">
 
-<% unless current_user.tutor == false || @user.profile == current_user.profile %>
-  <%= tutor_button(@user) %>
-<% end %>
+  <% unless current_user.tutor == false || @user.profile == current_user.profile %>
+    <p class="profile-tutor-btn"><%= tutor_button(@user) %></p>
+  <% end %>
 
-<br>
 
-<% if @user.profile == current_user.profile %>
-  <div class="profile-tutor-chats">
-    <div id="tutor-chat-list">
-      <% if @user.tutees.count > 0 %>
-        <h4>My Tutees</h4>
-        <% @user.chats.each do |chat| %>
-          <% if @user.tutee_ids.include?(chat.profile.user_id) %>
-            <p><%= link_to chat.title, profile_path(chat.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+  <div class="profile-details row">
+    <div class="col-md-6 col-md-offset-6">
+      <h3 class="profile-name">Profile of <%= @user.username %></h3>
+      <div class="profile-about-wrapper">
+        <% if @profile.bio %>
+          <h4 class="profile-about">About Me: </h4>
+          <p class="profile-bio"><%= @profile.bio %></p>
+          <%= link_to "Edit", (edit_profile_path(@user.profile) if @user == current_user), class: "btn btn-primary" %>
+        <% elsif @user.profile == current_user.profile %>
+          <p class="profile-bio-fillout">Fill out your bio!</p>
+          <%= render 'profiles/form' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% if @user.profile == current_user.profile %>
+    <div class="profile-tutor-contacts">
+      <div id="profile-tutor-list">
+        <% if @user.tutees.count > 0 %>
+          <h4 class="profile-tutees">My Tutees</h4>
+          <% @user.chats.each do |chat| %>
+            <% if @user.tutee_ids.include?(chat.profile.user_id) %>
+              <p id="tuteechat_<%= chat.id %>"><%= link_to chat.title, profile_path(chat.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
 
-      <% if @user.tutors.count > 0 %>
-        <% @chats.each do |chat| %>
-          <% if chat.title == @user.username %>
-          <h4>My Tutors</h4>
-          <p><%= link_to chat.user.username, profile_path(chat.user.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+        <% if @user.tutors.count > 0 %>
+          <% @chats.each do |chat| %>
+            <% if chat.title == @user.username %>
+            <h4 class="profile-tutors">My Tutors</h4>
+            <p id="tutorchat_<%= chat.id %>"><%= link_to chat.user.username, profile_path(chat.user.profile) %> - <%= link_to "Chat Now", chat_path(chat), class: "btn btn-info" %></p>
+            <% end %>
           <% end %>
         <% end %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <% unless @user == current_user %>
+    <%= follow_button(@user) %>
+  <% end %>
+
+
+
+
+  <%= render 'profile_tutor_section' %>
+
+
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-6">
+      <% if @profile.locations.count > 0 %>
+        <%= render partial: 'locations/location', locals: {locationable: @profile} %>
+        <% if @profile == current_user.profile %>
+          <%= link_to "Edit Location", edit_location_path(@profile.locations.first), class: "btn btn-primary" %>
+        <% end %>
+      <% elsif @user.profile == current_user.profile %>
+        <%= render partial: 'locations/form', locals: {locationable: @profile} %>
       <% end %>
     </div>
   </div>
-<% end %>
 
 
-<% unless @user == current_user %>
-  <%= follow_button(@user) %>
-<% end %>
-
-<br>
-
-<% if @profile.bio %>
-  <hr>
-  <h4>About Me: <%= link_to "Edit", edit_profile_path(@user.profile) if @user == current_user %></h4>
-  <p><%= @profile.bio %></p>
-<% elsif @user.profile == current_user.profile %>
-  <p>Fill out your bio!</p>
-  <%= render 'profiles/form' %>
-<% end %>
-
-<%= render 'profile_tutor_section' %>
-
-
-<hr>
-<% if @profile.locations.count > 0 %>
-  <%= render partial: 'locations/location', locals: {locationable: @profile} %>
-  <% if @profile == current_user.profile %>
-    <%= link_to "Edit Location", edit_location_path(@profile.locations.first) %>
+  <% if current_user == @profile.user %>
+    <h3>Add a new post!</h3>
+    <%= render partial: 'posts/form', locals: {profile: @profile} %>
   <% end %>
-<% elsif @user.profile == current_user.profile %>
-  <%= render partial: 'locations/form', locals: {locationable: @profile} %>
-<% end %>
+
+  <% if @profile.posts.count > 0 %>
+    <h3>Recent Blog Post's by <%= @profile.user.username %></h3>
+    <%= render @profile.posts %>
+  <% end %>
 
 
-<% if current_user == @profile.user %>
-  <h3>Add a new post!</h3>
-  <%= render partial: 'posts/form', locals: {profile: @profile} %>
-<% end %>
+  <hr>
+  <% if current_user == @profile.user %>
+    <h4>Start a new Open Chat!</h4>
+    <%= render partial: 'chats/form', locals: {profile: @profile} %>
+  <% end %>
 
-<% if @profile.posts.count > 0 %>
-  <h3>Recent Blog Post's by <%= @profile.user.username %></h3>
-  <%= render @profile.posts %>
-<% end %>
-
-
-<hr>
-<% if current_user == @profile.user %>
-  <h4>Start a new Open Chat!</h4>
-  <%= render partial: 'chats/form', locals: {profile: @profile} %>
-<% end %>
-
-<% if @profile.chats.count > 0 %>
-  <h3>Chats created by <%= @profile.user.username %></h3>
-  <%= render @profile.chats %>
-<% end %>
+  <% if @profile.chats.count > 0 %>
+    <h3>Chats created by <%= @profile.user.username %></h3>
+    <%= render @profile.chats %>
+  <% end %>
+</div>
