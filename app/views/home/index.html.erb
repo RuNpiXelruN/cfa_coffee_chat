@@ -49,12 +49,18 @@
               <li>Follow already..</li>
             <% end %>
           </ul>
-        </div> <% end %> <!-- end of follow button section -->
+        </div>  <!-- end of follow button section -->
 
         <div class="home-activity-section">
           <h2 class="page-header" style="text-align: center">Recent Activity</h3>
           <%= render @users %>
         </div>
       </div>
+      <% else %>
+        <div class="home-activity-section col-md-3 col-md-offset-1" style="margin-top: 5vh">
+          <h2 class="page-header" style="text-align: center">Recent Activity</h3>
+          <%= render @users %>
+        </div>
+      <% end %>
   </div>  <!-- end of row for activity feed and follow buttons -->
 </div>
