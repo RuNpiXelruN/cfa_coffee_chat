@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def create
     profile = current_user.profile
     @post = profile.posts.build post_params

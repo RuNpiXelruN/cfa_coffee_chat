@@ -1,8 +1,19 @@
-<%= form_tag chat_list_path, method: 'GET', remote: true do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<div class="row">
+  <div class="col-md-7 well">
+    <div class="page-header">
+      <%= form_tag chat_list_path, method: 'GET', remote: true do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </div>
 
-<div id="items-grid">
-  <%= render partial: 'chats/chat_list', locals: {chats: @chats} %>
+    <div id="items-grid">
+      <%= render partial: 'chats/chat_list', locals: {chats: @chats} %>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-md-offset-1">
+    <h2 class="page-header">Recent Activity</h2>
+    <%= render @users %>
+  </div>
 </div>

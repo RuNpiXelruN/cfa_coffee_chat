@@ -1,3 +1,5 @@
-<% @chats.each do |chat| %>
-  <p><%= link_to chat.title, chat_path(chat) %>, created <%= time_ago_in_words(chat.created_at) + ' ago' %></p>
-<% end %>
+<div class="panel panel-default">
+  <% @chats.each do |chat| %>
+    <p><%= link_to chat.title, chat_path(chat) %>, created <%= time_ago_in_words(chat.created_at) + ' ago' %></p>
+  <% end %>
+</div>

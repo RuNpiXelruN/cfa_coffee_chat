@@ -8,6 +8,7 @@ class ChatsController < ApplicationController
   end
 
   def index
+    @users = User.all.order(created_at: :desc)
     @chats = Chat.all.where(tutorchat: false).order(created_at: :desc)
   end
 

@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 
   def show
+    # @post = Post.find(params[:post_id])
     @profile = Profile.find(params[:id])
     @user = @profile.user
     @chats = Chat.all
