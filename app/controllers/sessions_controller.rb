@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create], raise: false
 
   def new
+
   end
 
   def create
@@ -22,6 +23,6 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:session).permit(:username, :password)
+    params.require('/session/new').permit(:username, :password)
   end
 end
