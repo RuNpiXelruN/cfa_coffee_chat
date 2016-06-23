@@ -28,6 +28,7 @@
   </div>
 
   <%= render partial: 'modals/editprofile', profile: @profile %>
+  <%= render partial: 'modals/editlocation', locals: {location: @profile.locations.first} %>
   <%= render 'profile_tutor_section' %>
 
 
@@ -35,7 +36,11 @@
     <!-- My Chat dropdown -->
     <div class="col-md-4">
       <div class="dropdown">
-        <button class="col-md-12 btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Chats
+        <% if current_user.profile == @user.profile %>
+          <button class="col-md-12 btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Chats
+        <% else %>
+          <button class="col-md-12 btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Chats created by <%= @user.username %>
+        <% end %>
           <span class="caret"></span>
         </button>
           <ul class="chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu1">
@@ -47,25 +52,28 @@
           </ul>
       </div>
 
-      <!-- my student chats -->
-      <div class="dropdown">
-        <button class="col-md-12 btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Student Chats
-          <span class="caret"></span>
-        </button>
-          <ul class="student-chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu2">
-            <%= render 'tutor/tutees' %>
-          </ul>
-      </div>
+      <% if current_user.profile == @user.profile %>
+        <!-- my student chats -->
+        <div class="dropdown">
+          <button class="col-md-12 btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Student Chats
+            <span class="caret"></span>
+          </button>
+            <ul class="student-chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu2">
+              <%= render 'tutor/tutees' %>
+            </ul>
+        </div>
 
-      <!-- my tutor chats -->
-      <div class="dropdown">
-        <button class="col-md-12 btn btn-info dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Tutor Chats
-          <span class="caret"></span>
-        </button>
-          <ul class="tutor-chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu3">
-            <%= render 'tutor/tutors' %>
-          </ul>
-      </div>
+        <!-- my tutor chats -->
+        <div class="dropdown">
+          <button class="col-md-12 btn btn-info dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Tutor Chats
+            <span class="caret"></span>
+          </button>
+            <ul class="tutor-chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu3">
+              <%= render 'tutor/tutors' %>
+            </ul>
+        </div>
+      <% end %>
+
     </div>
 
     <div class="col-md-6 col-md-offset-2">
