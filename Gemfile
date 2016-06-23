@@ -15,7 +15,7 @@ gem 'monban-generators'
 gem 'geocoder'
 gem 'acts_as_votable'
 gem 'bootstrap-sass', '~> 3.3.6'
-
+gem 'carrierwave'
 
 
 
