@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'chat_list', to: "chats#chat_list"
+  get 'user_list', to: "users#user_list"
   resources :chats, only: [:show, :update, :index] do
     resources :comments, only: [:new, :create]
   end

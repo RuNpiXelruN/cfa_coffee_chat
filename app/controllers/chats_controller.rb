@@ -1,6 +1,12 @@
 class ChatsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
 
+  def chat_list
+    if params[:search]
+      @chats = Chat.where("title LIKE ?", "%#{params[:search]}%").where(tutorchat: false).order(created_at: :desc)
+    end
+  end
+
   def index
     @chats = Chat.all.where(tutorchat: false).order(created_at: :desc)
   end
@@ -18,8 +24,6 @@ class ChatsController < ApplicationController
       redirect_to profile_path(profile)
     end
   end
-
-
 
   def update
     @chat = Chat.find(params[:id])

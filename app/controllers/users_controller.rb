@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create], raise: false
 
+  def user_list
+    if params[:search]
+      @users = User.where("username LIKE ?", "%#{params[:search]}%").order(created_at: :desc)
+    end
+  end
+
   def index
     @users = User.all.order(created_at: :desc)
   end

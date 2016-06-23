@@ -6,7 +6,7 @@
         <h4 class="modal-title">Welcome Back!</h4>
       </div>
       <div class="modal-body">
-          <%= form_for :session, url: session_path do |f| %>
+          <%= form_for new_session_path, url: session_path do |f| %>
             <div>
               <span class="model-label"><%= f.label :username %></span>
               <p><%= f.text_field :username, placeholder: "Username..", required: true, class: "modal-input" %><p>

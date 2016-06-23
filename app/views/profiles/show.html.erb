@@ -18,7 +18,7 @@
         <% if @profile.bio %>
           <h4 class="profile-about">About Me: </h4>
           <p class="profile-bio"><%= @profile.bio %></p>
-          <%= link_to "Edit", (edit_profile_path(@user.profile) if @user == current_user), class: "btn btn-primary" %>
+          <button type="button" data-toggle="modal" data-target="#editprofile-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Edit</button>
         <% elsif @user.profile == current_user.profile %>
           <p class="profile-bio-fillout">Fill out your bio!</p>
           <%= render 'profiles/form' %>
@@ -27,7 +27,8 @@
     </div>
   </div>
 
-
+  <%= render partial: 'modals/editprofile', profile: @profile %>
+  <%= render partial: 'modals/editlocation', locals: {location: @profile.locations.first} %>
   <%= render 'profile_tutor_section' %>
 
 
@@ -70,7 +71,7 @@
       <% if @profile.locations.count > 0 %>
         <%= render partial: 'locations/location', locals: {locationable: @profile} %>
         <% if @profile == current_user.profile %>
-          <%= link_to "Edit Location", edit_location_path(@profile.locations.first), class: "btn btn-primary" %>
+          <button type="button" data-toggle="modal" data-target="#editlocation-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Edit</button>
         <% end %>
       <% elsif @user.profile == current_user.profile %>
         <%= render partial: 'locations/form', locals: {locationable: @profile} %>

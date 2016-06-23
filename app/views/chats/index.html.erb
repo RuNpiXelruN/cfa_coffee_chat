@@ -1,3 +1,8 @@
-<% @chats.each do |chat| %>
-  <p><%= link_to chat.title, chat_path(chat) %>, created <%= time_ago_in_words(chat.created_at) + ' ago' %></p>
+<%= form_tag chat_list_path, method: 'GET', remote: true do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
 <% end %>
+
+<div id="items-grid">
+  <%= render partial: 'chats/chat_list', locals: {chats: @chats} %>
+</div>

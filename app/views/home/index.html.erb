@@ -8,34 +8,7 @@
   </div>
 
   <%= render partial: 'modals/signup' %>
-  <%# render partial: 'modals/signin' %>
-
-  <div id="signin-modal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Welcome Back!</h4>
-        </div>
-        <div class="modal-body">
-            <%= form_for new_session_path, url: session_path do |f| %>
-              <div>
-                <span class="model-label"><%= f.label :username %></span>
-                <p><%= f.text_field :username, placeholder: "Username..", required: true, class: "modal-input" %><p>
-              </div>
-              <div>
-                <span class="model-label"><%= f.label :password %></span>
-                <p><%= f.password_field :password, require: true, placeholder: "Password..", class: "modal-input" %></p>
-              </div>
-        </div>
-        <div class="modal-footer">
-          <%= f.submit "Sign In", class: "btn btn-info" %>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <% end %>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+  <%= render partial: 'modals/signin' %>
 
 
   <div class="row">
