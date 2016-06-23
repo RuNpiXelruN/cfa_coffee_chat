@@ -19,9 +19,9 @@
     </div>
 
     <% if signed_in? %>
-      <div class="home-follow-btns col-md-3 col-md-offset-1">
+      <div class="home-follow-btns col-md-4 col-md-offset-1">
         <!-- following links -->
-        <div class="btn-group">
+        <div class="btn-group btn-group-1">
           <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Following (<%= current_user.followed_users.count %>) <span class="caret"></span>
           </button>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <% else %>
-        <div class="home-activity-section col-md-3 col-md-offset-1" style="margin-top: 5vh">
+        <div class="home-activity-section col-md-4 col-md-offset-1" style="margin-top: 5vh">
           <h2 class="page-header" style="text-align: center">Recent Activity</h3>
           <%= render @users %>
         </div>

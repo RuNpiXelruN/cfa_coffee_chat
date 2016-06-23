@@ -1,1 +1,5 @@
-<p><%= render @users %></p>
+<div class="panel panel-default">
+  <% @users.each do |user| %>
+    <p class="well"><%= link_to user.username, profile_path(user.profile), class: "btn btn-success" %> joined, <%= time_ago_in_words(user.created_at) + ' ago' %></p>
+  <% end %>
+</div>

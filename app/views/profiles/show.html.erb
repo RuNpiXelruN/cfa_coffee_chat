@@ -18,7 +18,7 @@
         <% if @profile.bio %>
           <h4 class="profile-about">About Me: </h4>
           <p class="profile-bio"><%= @profile.bio %></p>
-          <button type="button" data-toggle="modal" data-target="#editprofile-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Edit</button>
+          <button type="button" data-toggle="modal" data-target="#editprofile-modal" class="home-hero-btn btn btn-info col-md-2" style="margin-bottom: 1vh">Edit</button>
         <% elsif @user.profile == current_user.profile %>
           <p class="profile-bio-fillout">Fill out your bio!</p>
           <%= render 'profiles/form' %>
@@ -38,11 +38,13 @@
         <button class="col-md-12 btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Chats
           <span class="caret"></span>
         </button>
-        <% if @profile.chats.count > 0 %>
-            <ul class="chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu1">
+          <ul class="chat-dropdown dropdown-menu col-md-12" aria-labelledby="dropdownMenu1">
+            <% if @profile.chats.count > 1 %>
               <%= render @profile.chats %>
-            </ul>
-        <% end %>
+            <% else %>
+              <p>No chats yet!</p>
+            <% end %>
+          </ul>
       </div>
 
       <!-- my student chats -->
@@ -70,7 +72,7 @@
       <% if @profile.locations.count > 0 %>
         <%= render partial: 'locations/location', locals: {locationable: @profile} %>
         <% if @profile == current_user.profile %>
-          <button type="button" data-toggle="modal" data-target="#editlocation-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Edit</button>
+          <button type="button" data-toggle="modal" data-target="#editlocation-modal" class="home-hero-btn btn btn-info col-md-2" style="margin-bottom: 1vh; margin-top: 1vh">Edit</button>
         <% end %>
       <% elsif @user.profile == current_user.profile %>
         <%= render partial: 'locations/form', locals: {locationable: @profile} %>

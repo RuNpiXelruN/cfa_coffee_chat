@@ -1,8 +1,19 @@
-<%= form_tag user_list_path, method: 'get', remote: true do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<div class="row">
+  <div class="col-md-7 well">
+    <div class="page-header">
+      <%= form_tag user_list_path, method: 'get', remote: true do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", class: "btn btn-warning" %>
+      <% end %>
+    </div>
 
-<div id="user-items-grid">
-  <%= render partial: 'users/user_list', users: @users %>
+    <div id="user-items-grid">
+      <%= render partial: 'users/user_list', users: @users %>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-md-offset-1">
+    <h2 class="page-header">Latest Chats</h2>
+    <%= render 'chats/chat_list' %>
+  </div>
 </div>

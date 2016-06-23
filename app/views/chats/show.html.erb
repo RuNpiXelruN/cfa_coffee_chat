@@ -13,23 +13,25 @@
     <%= render @chat.comments %>
   </div>
 <% else %>
-  <h1>Welcome to tutor Chat!</h1>
-  <p><strong>Tutor: </strong><%= @chat.user.username %></p>
-  <p><strong>Tutee: </strong><%= @chat.title %></p>
+  <h1 class="jumbotron">Welcome to tutor Chat!</h1>
+  <div class="page-header">
+    <p><strong>Tutor: </strong><%= @chat.user.username %></p>
+    <p><strong>Tutee: </strong><%= @chat.title %></p>
 
-  <% if @chat.description %>
-    <p>Chatting about <strong><%= @chat.description %></p></strong>
-  <% else %>
-    <h3>What topic are you guys chatting about??</h3>
-    <%= form_for @chat do |f| %>
-      <p><%= f.text_area :description, placeholder: "Enter a description.." %></p>
-      <%= f.submit %>
+    <% if @chat.description %>
+      <p>Chatting about <strong><%= @chat.description %></p></strong>
+    <% else %>
+      <% if current_user == @chat.user %>
+        <h3>What topic are you guys chatting about??</h3>
+        <%= form_for @chat do |f| %>
+          <p><%= f.text_area :description, placeholder: "Enter a description.." %></p>
+          <%= f.submit "Post!", class: "btn btn-success" %>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <p>Created by <%= link_to @chat.user.username, profile_path(@chat.user.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
-
-  <hr>
+    <p>Created by <%= link_to @chat.user.username, profile_path(@chat.user.profile) %>, <%= time_ago_in_words(@chat.created_at) + ' ago' %></p>
+  </div>
 
   <h4>What are you even thinking about??</h4>
   <%= render partial: 'comments/form', locals: {chat: @chat} %>

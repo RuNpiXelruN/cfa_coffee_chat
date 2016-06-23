@@ -1,4 +1,4 @@
-<div class="col-md-10 col-md-offset-1 panel panel-default">
+<div class="blog-post col-md-10 col-md-offset-1 panel panel-default">
   <h3><strong><%= post.title %></strong></h3>
     <% if post.updated_at.to_i > post.created_at.to_i %>
       <p> created <%= time_ago_in_words(post.created_at) + ' ago' %></p>

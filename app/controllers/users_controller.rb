@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create], raise: false
 
+
   def user_list
     if params[:search]
       @users = User.where("username LIKE ?", "%#{params[:search]}%").order(created_at: :desc)
@@ -9,6 +10,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc)
+    @chats = Chat.all.order(created_at: :desc).where(tutorchat: false)
   end
 
   def new
