@@ -1,9 +1,14 @@
 <div class="home-wrapper">
-  <div class="home-hero row jumbotron">
+  <div class="home-hero row jumbotron" style="background: lavenderblush">
     <div class="homer-hero-block" style="text-align: center">
       <h1 class="home-header col-md-10 col-md-offset-1" style="font-size: 4vw">Welcome To <span style="text-decoration: line-through">Coffee</span> Cash Chat</h1>
-      <p class="home-blurb col-md-6 col-md-offset-3">Get your learn on!</p>
-      <button type="button" data-toggle="modal" data-target="#signup-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Get Learned</button>
+      <% if signed_in? %>
+        <h3 class="home-blurb col-md-6 col-md-offset-3" style="margin-top: 3vh">Oh heyyyy <%= current_user.username %>...did you know:</h3>
+        <blockquote class="home-blurb col-md-6 col-md-offset-3" style="font-style: italic; margin-top: 5vh"><%= @daily_quote %></blockquote>
+      <% else %>
+        <p class="home-blurb col-md-6 col-md-offset-3">Get your learn on!</p>
+        <button type="button" data-toggle="modal" data-target="#signup-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Get Learned</button>
+      <% end %>
     </div>
   </div>
 
@@ -13,7 +18,7 @@
 
   <div class="row">
 
-    <div class="home-blog-posts col-md-7 well">
+    <div class="home-blog-posts col-md-7 well" style="background: ghostwhite">
       <h2 class="page-header" style="text-align: center; margin-top: 8vh">Most Recent Blog Posts</h2>
       <%= render @activity_posts %>
     </div>

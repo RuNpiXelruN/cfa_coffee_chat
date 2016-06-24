@@ -9,7 +9,8 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    @location = Location.find(params[:id])
+    @profile = current_user.profile
+    @location = @profile.locations.first
   end
 
   def update

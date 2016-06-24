@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = Profile.find(params[:id])
+    @location = @profile.locations.first
   end
 
   def update

@@ -6,7 +6,7 @@
         <h4 class="modal-title">Edit your bio..your're cooler than that!</h4>
       </div>
       <div class="modal-body">
-          <%= form_for location do |f| %>
+          <%= form_for @location do |f| %>
             <div>
               <span class="model-label"><%= f.label :address %></span>
               <p><%= f.text_field :address, class: "modal-input" %><p>
