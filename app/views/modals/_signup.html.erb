@@ -19,6 +19,10 @@
               <span class="model-label"><%= f.label :password %></span>
               <p><%= f.password_field :password, require: true, placeholder: "Password..", class: "modal-input" %></p>
             </div>
+            <div>
+              <span class="model-label"><%= f.label :image %></span>
+              <p><%= f.file_field :image, require: true %></p>
+            </div>
       </div>
       <div class="modal-footer">
         <%= f.submit "SignUp already", class: "btn btn-info" %>

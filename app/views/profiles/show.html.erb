@@ -1,8 +1,14 @@
 <div class="profile-wrapper jumbotron">
   <div class="profile-details row">
-    <div class="col-md-6 col-md-offset-6">
-      <p class="profile-name">
+    <div class="profile-img col-md-4">
+      <%= image_tag @user.image.url, class: "col-md-12" %>
+    </div>
+
+
+    <div class="col-md-6 col-md-offset-2">
+      <h2 class="profile-name page-header" style="margin-top: 0">
         Profile of <%= @user.username %>
+      </h2>
         <% unless @user == current_user %>
           <span class="profile-follow_button">
             <%= follow_button(@user) %>
@@ -47,7 +53,7 @@
             <% if @profile.chats.count > 1 %>
               <%= render @profile.chats %>
             <% else %>
-              <p>No chats yet!</p>
+              <p style="text-align: center">No chats yet!</p>
             <% end %>
           </ul>
       </div>

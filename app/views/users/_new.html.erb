@@ -9,6 +9,9 @@
     <%= f.password_field :password, require: true, placeholder: "Password.." %>
   </div>
   <div>
+    <%= f.file_field :image, require: true %>
+  </div>
+  <div>
     <%= f.submit "SignUp already" %>
   </div>
 <% end %>

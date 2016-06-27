@@ -1,14 +1,17 @@
 <div class="home-wrapper">
   <div class="home-hero row jumbotron" style="background: lavenderblush">
     <div class="homer-hero-block" style="text-align: center">
-      <h1 class="home-header col-md-10 col-md-offset-1" style="font-size: 4vw">Welcome To <span style="text-decoration: line-through">Coffee</span> Cash Chat</h1>
-      <% if signed_in? %>
-        <h3 class="home-blurb col-md-6 col-md-offset-3" style="margin-top: 3vh">Oh heyyyy <%= current_user.username %>...did you know:</h3>
-        <blockquote class="home-blurb col-md-6 col-md-offset-3" style="font-style: italic; margin-top: 5vh"><%= @daily_quote %></blockquote>
-      <% else %>
-        <p class="home-blurb col-md-6 col-md-offset-3">Get your learn on!</p>
-        <button type="button" data-toggle="modal" data-target="#signup-modal" class="home-hero-btn btn btn-info btn-lg col-md-2 col-md-offset-5">Get Learned</button>
-      <% end %>
+      <%= image_tag "dog mascot.png", :alt => "", class: "col-md-3" %>
+      <div class="not-dog col-md-8 col-md-offset-1" style: "border-left: 1vw solid black">
+        <h1 class="home-header" style="font-size: 4vw; text-align: left; margin-top: 0">Welcome To <span style="text-decoration: line-through">Coffee</span></br>cash-only Chat</h1>
+        <% if signed_in? %>
+          <h3 class="home-blurb" style="margin-top: 3vh; text-align: left">Oh heyyyy <%= current_user.username %>...did you know:</h3>
+          <blockquote class="home-blurb" style="font-style: italic; margin-top: 5vh; text-align: left"><%= @daily_quote %></blockquote>
+        <% else %>
+          <p class="home-blurb", style="text-align: left">Get your learn on!</p>
+          <button type="button" data-toggle="modal" data-target="#signup-modal" class="home-hero-btn btn btn-info btn-lg col-md-3", style="margin-left: 0vw">Get Learned</button>
+        <% end %>
+      </div>
     </div>
   </div>
 

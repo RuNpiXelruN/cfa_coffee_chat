@@ -38,3 +38,9 @@
 .blog-post {
   padding-bottom: 3vh;
 }
+
+.home-hero.row.jumbotron {
+    border-bottom: 0.3vw solid rgba(0,0,0,0.2) !important;
+    box-shadow: 0vw 0vw 2vw 0vw rgba(0,0,0,0.3) !important;
+    background: white !important;
+}

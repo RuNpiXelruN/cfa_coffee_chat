@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
+
+
   has_one :profile, dependent: :destroy
   has_many :chats
   validates :email, presence: true, uniqueness: true

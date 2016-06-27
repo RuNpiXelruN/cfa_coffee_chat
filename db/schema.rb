@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618122126) do
+ActiveRecord::Schema.define(version: 20160624022932) do
 
   create_table "chats", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "profile_id"
+    t.boolean  "tutorchat",   default: false
     t.index ["profile_id"], name: "index_chats_on_profile_id"
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160618122126) do
     t.datetime "updated_at",                      null: false
     t.string   "username"
     t.boolean  "tutor",           default: false
+    t.string   "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

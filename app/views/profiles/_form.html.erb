@@ -1,4 +1,4 @@
 <%= form_for @profile do |f| %>
   <p><%= f.text_area :bio, placeholder: "Add your bio.." %></p>
-  <%= f.submit %>
+  <%= f.submit "Save!", class: "btn btn-info", style: "margin-bottom: 2vh" %>
 <% end %>
